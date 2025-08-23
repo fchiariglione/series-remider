@@ -4,11 +4,11 @@ app = Flask(__name__)
 @app.route('/')
 
 def index():
-    return "Hello Wolrd"
+    return render_template("index.html")
 
 @app.route("/<name>")
 def tipo(name):
-    return f"Hello {name}"
+    return render_template("name.html", content=name)
 
 @app.route("/admin")
 
