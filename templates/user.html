@@ -2,16 +2,17 @@
 {% block title %}User{% endblock %}
 
 {% block content %}
-    <h1>User {{content}}</h1>
 
-    {% for i in range(0,10) %}
-    <p>For Loop {{i}}</p>
-    {% endfor %}
 
-    {% if 1 == 1 %}
-    <p>If</p>
-    {% elif 1 == 0 %}
-    <p>Elif</p>
-    {% endif %}
+	{% with messages = get_flashed_messages() %}
+			{% if messages %}
+			{% for msg in messages %}
+					<p>{{msg}}</p>
+			{% endfor %}
+			{% endif %}
+	{% endwith %}
+
+  <h1>Welcome {{user}}</h1>
+
 
 {% endblock %}
