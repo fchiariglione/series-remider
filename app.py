@@ -10,5 +10,5 @@ def index():
 def tipo(name):
     return render_template("name.html", content=name)
 
-if __name__ == "__maiin__":
+if __name__ == "__main__":
     app.run(debug=True)
