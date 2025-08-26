@@ -1,4 +1,5 @@
 from flask import Flask, redirect, url_for, render_template, request, session, flash
+import sqlalchemy
 from datetime import timedelta
 
 app = Flask(__name__)
@@ -28,12 +29,19 @@ def login():
         return render_template("login.html")
 
 
-@app.route('/user')
+@app.route('/user', methods=["POST", "GET"])
 def user():
+    email = None
     if "user" in session:
         user = session["user"]
-        
-        return render_template("user.html", user=user)
+        if request.method == "POST":
+            email = request.form["email"]
+            session["email"] = email
+            flash(f"Email saved")
+        else:
+            if "email" in session:
+                email = session["email"]
+        return render_template("user.html", email=email)
     else:
         flash(f"You are not logged in")
         return redirect(url_for("login"))
@@ -42,6 +50,7 @@ def user():
 def logout():
     flash("You have been logged out", "info")
     session.pop("user", None)
+    session.pop("email", None)
     return redirect(url_for("login"))
 
 if __name__ == "__main__":
