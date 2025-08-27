@@ -27,10 +27,6 @@ class Users(db.Model):
         self.name = name
         self.email = email
 
-# asegura que la tabla exista
-with app.app_context():
-    db.create_all()
-
 @app.route('/')
 def index():
     return render_template("index.html")
@@ -96,3 +92,6 @@ def logout():
 
 if __name__ == "__main__":
     app.run(debug=True)
+    # asegura que la tabla exista
+    with app.app_context():
+        db.create_all()
