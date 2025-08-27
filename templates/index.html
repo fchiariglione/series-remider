@@ -1,2 +1,6 @@
 {% extends "base.html"%}
 {% block title %}Home Page{% endblock %}
+{% block content %}
+<h1>Title Static</h1>
+<img src="{{url_for('static', filename='img/saikyou-onmyouji-no-isekai-tenseiki.jpg')}}" alt="" srcset="">
+{% endblock %}
